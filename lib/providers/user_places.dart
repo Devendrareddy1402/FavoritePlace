@@ -1,11 +1,12 @@
 import 'package:favorite_place/models/place.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UsersPlaceNotifier extends StateNotifier<List<Place>> {
   UsersPlaceNotifier() : super(const []);
 
-  void addPlace(String title) {
-    final newPlace = Place(title: title);
+  void addPlace(String title , XFile image) {
+    final newPlace = Place(title: title,image: image);
     state = [newPlace, ...state];
   }
 }

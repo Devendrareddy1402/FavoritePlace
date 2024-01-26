@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageInput extends StatefulWidget {
-  const ImageInput({super.key});
+  const ImageInput({super.key, required this.onPickImage});
+
+  // to access the widget in child class from parent class we use function variable
+  final void Function(XFile) onPickImage;
+
   @override
   State<ImageInput> createState() {
     return _ImageInputState();
@@ -27,6 +31,8 @@ class _ImageInputState extends State<ImageInput> {
     setState(() {
       _selectedImage = pickedImage;
     });
+
+    widget.onPickImage(_selectedImage!);
   }
 
   @override
@@ -53,10 +59,11 @@ class _ImageInputState extends State<ImageInput> {
       width: double.infinity,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          border: Border.all(
-        width: 1,
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-      )),
+        border: Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+        ),
+      ),
       child: content,
     );
   }

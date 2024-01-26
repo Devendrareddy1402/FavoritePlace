@@ -1,3 +1,4 @@
+import 'package:cross_file_image/cross_file_image.dart';
 import 'package:favorite_place/models/place.dart';
 import 'package:flutter/material.dart';
 
@@ -12,13 +13,15 @@ class PlaceDetails extends StatelessWidget {
           place.title,
         ),
       ),
-      body: Center(
-        child: Text(
-          place.title,
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
-        ),
+      body: Stack(
+        children: [
+          Image(
+            image: XFileImage(place.image),
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+        ],
       ),
     );
   }
